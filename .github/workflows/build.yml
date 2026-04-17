@@ -1,0 +1,20 @@
+name: Build-WDM
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v2
+      - name: Build Win32
+        run: msbuild BonPTxWDM.sln /p:Configuration=Release /p:Platform=Win32 /p:WindowsTargetPlatformVersion=10.0 /p:PlatformToolset=v143
+      - name: Build x64
+        run: msbuild BonPTxWDM.sln /p:Configuration=Release /p:Platform=x64 /p:WindowsTargetPlatformVersion=10.0 /p:PlatformToolset=v143
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: BonPTxWDM_Binaries
+          path: |
+            **/Release/*.dll
+            
