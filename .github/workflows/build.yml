@@ -6,13 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Download SDK
-        # pt2wdmのビルドに必要なヘッダーファイルを直接取得
-        run: |
-          mkdir inc
-          Invoke-WebRequest -Uri "https://github.com" -OutFile "inc/PtDrvIfLib.h"
-        shell: powershell
-
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v2
 
