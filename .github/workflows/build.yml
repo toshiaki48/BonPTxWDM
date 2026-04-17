@@ -20,6 +20,8 @@ jobs:
         with:
           name: BonPTxWDM_Binaries
           path: |
-            **/Release/*.dll
-            **/Release/*.exe
-            
+            **/*.dll
+            **/*.exe
+          # 途中の余計なファイルを除外して、必要なものだけを抽出
+          if-no-files-found: error
+          
